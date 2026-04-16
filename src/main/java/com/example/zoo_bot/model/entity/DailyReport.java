@@ -28,16 +28,20 @@ public class DailyReport {
     private LocalDateTime reportDate;
 
     @Column(columnDefinition = "TEXT")
-    private String photoFileId;        // file_id из Telegram
+    private String photoFileId;
 
     @Column(columnDefinition = "TEXT")
-    private String ration;             // рацион
+    private String ration;
 
     @Column(columnDefinition = "TEXT")
-    private String wellBeing;          // самочувствие и привыкание
+    private String wellBeing;
 
     @Column(columnDefinition = "TEXT")
-    private String behaviorChanges;    // изменения в поведении
+    private String behaviorChanges;
 
+    @Column(columnDefinition = "boolean default true")
     private boolean isComplete = false;
+
+    @Column(columnDefinition = "boolean default false")
+    private boolean isViewed;
 }

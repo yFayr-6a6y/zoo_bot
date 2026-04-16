@@ -13,4 +13,7 @@ public interface DailyReportRepository extends JpaRepository<DailyReport, Long> 
     List<DailyReport> findByAdopterIdOrderByReportDateDesc(Long adopterId);
 
     boolean existsByAdopterIdAndReportDateAfter(Long adopterId, LocalDateTime date);
+
+    // Новый метод для REST API
+    List<DailyReport> findByIsCompleteTrueAndIsViewedFalse();
 }
