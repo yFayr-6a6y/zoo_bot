@@ -38,7 +38,8 @@ public class User {
     private LocalDateTime lastActivity;
 
     @Column(columnDefinition = "boolean default false")
-    private boolean isAdopter = false;   // является ли усыновителем
+    @Builder.Default
+    private boolean isAdopter = false;
 
     @PrePersist
     @PreUpdate

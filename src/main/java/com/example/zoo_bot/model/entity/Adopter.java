@@ -35,5 +35,6 @@ public class Adopter {
     private LocalDate trialEndDate;           // конец испытательного срока (30 дней по умолчанию)
 
     @Column(columnDefinition = "boolean default true")
-    private boolean isOnTrial = true;         // находится ли на испытательном сроке
+    @Builder.Default
+    private boolean isOnTrial = true;
 }

@@ -2,8 +2,6 @@ package com.example.zoo_bot.controller;
 
 import com.example.zoo_bot.model.entity.DailyReport;
 import com.example.zoo_bot.service.ReportService;
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,17 +19,14 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/api/reports")
-@Tag(name = "Reports", description = "API для управления ежедневными отчётами усыновителей")
 @RequiredArgsConstructor
 public class ReportController {
 
     private final ReportService reportService;
 
     /**
-     * Получить список всех необработанных (непросмотренных) отчётов.
-     * Используется волонтёрами для проверки отчётов после 21:00.
+     * Получить список всех необработанных (непросмотренных) отчётов
      */
-    @Operation(summary = "Получить все необработанные отчёты")
     @GetMapping("/unprocessed")
     public ResponseEntity<List<DailyReport>> getUnprocessedReports() {
         List<DailyReport> reports = reportService.getUnprocessedReports();
@@ -39,9 +34,8 @@ public class ReportController {
     }
 
     /**
-     * Отметить отчёт как просмотренный волонтёром.
+     * Отметить отчёт как просмотренный волонтёром
      */
-    @Operation(summary = "Отметить отчёт как просмотренный")
     @PutMapping("/{reportId}/viewed")
     public ResponseEntity<Void> markAsViewed(@PathVariable Long reportId) {
         boolean success = reportService.markAsViewed(reportId);
@@ -51,9 +45,8 @@ public class ReportController {
     }
 
     /**
-     * Получить отчёт по его идентификатору.
+     * Получить отчёт по его идентификатору
      */
-    @Operation(summary = "Получить отчёт по ID")
     @GetMapping("/{reportId}")
     public ResponseEntity<DailyReport> getReportById(@PathVariable Long reportId) {
         return reportService.findById(reportId)
@@ -62,9 +55,8 @@ public class ReportController {
     }
 
     /**
-     * Отправить предупреждение усыновителю о ненадлежащем заполнении отчёта.
+     * Отправить предупреждение усыновителю о ненадлежащем заполнении отчёта
      */
-    @Operation(summary = "Отправить предупреждение усыновителю")
     @PostMapping("/{reportId}/warning")
     public ResponseEntity<Void> sendWarning(
             @PathVariable Long reportId,
@@ -77,9 +69,8 @@ public class ReportController {
     }
 
     /**
-     * Получить все отчёты конкретного усыновителя по chatId.
+     * Получить все отчёты конкретного усыновителя по chatId
      */
-    @Operation(summary = "Получить все отчёты усыновителя")
     @GetMapping("/adopter/{chatId}")
     public ResponseEntity<List<DailyReport>> getReportsByAdopter(@PathVariable Long chatId) {
         List<DailyReport> reports = reportService.getReportsByAdopter(chatId);

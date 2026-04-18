@@ -39,9 +39,11 @@ public class DailyReport {
     @Column(columnDefinition = "TEXT")
     private String behaviorChanges;
 
-    @Column(columnDefinition = "boolean default true")
+    @Column(columnDefinition = "boolean default false")
+    @Builder.Default
     private boolean isComplete = false;
 
     @Column(columnDefinition = "boolean default false")
-    private boolean isViewed;
+    @Builder.Default
+    private boolean isViewed = false;
 }
